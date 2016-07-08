@@ -14,6 +14,100 @@
     <link rel="stylesheet" href="main.css" media="screen">
   </head>
   <body>
+
+    <div class="choosePlayer screen">
+      <header>
+        <h1>Choose Player</h1>
+      </header>
+      <main>
+        <div class="wrapper">
+          <div class="gender" id="male"></div>
+          <div class="gender" id="female"></div>
+        </div>
+        <button type="button" name="button">Next</button>
+      </main>
+    </div>
+
+    <div class="ChooseCharacter screen">
+      <ul id="pokemonList"></ul>
+      <button type="button" name="button">Battle!</button>
+    </div>
+
+    <div class="battleScreen screen">
+      <main>
+        <section class="opponent">
+          <div class="opponent playerInfo">
+            <div class="wrapper">
+              <h3 class="pokemonName">Charmander</h3>
+              <h3 class="pokemonLevel">Lv9</h3>
+            </div>
+            <div class="HP">
+              <p class="HP-text">HP</p>
+              <progress value="10" max="100"></progress>
+            </div>
+          </div>
+          <div class="pokemon"></div>
+        </section>
+        <section class="player">
+          <div class="wrapper">
+            <div class="player playerInfo">
+              <div class="wrapper">
+                <h3 class="pokemonName">Charmander</h3>
+                <h3 class="pokemonLevel">Lv9</h3>
+              </div>
+              <div class="HP">
+                <p class="HP-text">HP</p>
+                <progress class="healthBar" value="10" max="100"></progress>
+              </div>
+            </div>
+            <div class="exp">
+              <progress id="expBar" value="10" max="100"></progress>
+            </div>
+          </div>
+          <div class="pokemon"></div>
+        </section>
+      </main>
+      <footer>
+        <div class="main-box">
+          <h3 class="winState">You missed!</h3>
+          <h3 class="action">You missed!</h3>
+          <ul class="moves-list"></ul>
+        </div>
+        <div class="info-box">
+          <div class="wrapper">
+            <h3>PP</h3>
+            <h3 class="PP">32/35</h3>
+          </div>
+          <h2>type/FLYING</h2>
+        </div>
+      </footer>
+    </div>
+
+
+    <div class="winScreen screen">
+      <head>
+        <h3>Winner</h3>
+      </head>
+      <main id="winner">
+        <img id="winnerPokemon" src="#" alt="" />
+        <img id="winnerPlayer" src="#" alt="" />
+      </main>
+      <footer>
+        <button class="new-game-btn" type="button" name="button">New Game</button>
+      </footer>
+    </div>
+
+
+
+
+    <div class="modal-container">
+      <div class="login-modal modal">
+        <h2>Username</h2>
+        <input id="login-input" type="text" name="name" value="" placeholder="Username">
+        <button id="login-btn" type="button" name="button">Login</button>
+      </div>
+    </div>
+
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
     <script src="app.js" type="text/javascript"></script>

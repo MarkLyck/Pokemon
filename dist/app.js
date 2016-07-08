@@ -15,10 +15,16 @@ function Pokemon (name, type, hitPoints, moves) {
   this.exP = 0;
   this.exPMax = 100;
   this.type = type;
+  this.imgSrc = '$';
   this.hitPoints = hitPoints || 30;
   this.moves = moves || [tackle];
 }
-var pokemon = new Pokemon('Pikachu', 'electric');
+var Pikachu = new Pokemon('Pikachu', 'electric');
+var Charmander = new Pokemon('Charmander', 'fire');
+var Bulbasaur = new Pokemon('Bulbasaur', 'grass');
+var Squirtle = new Pokemon('Squirtle', 'water');
+var Pidgey = new Pokemon('Pidgey', 'flying');
+var Magikarp = new Pokemon('Magicarp', 'water');
 
 function Player (userName, playerNo){
   this.userName = userName;
@@ -26,6 +32,8 @@ function Player (userName, playerNo){
   this.isWaiting = true;
   this.wins = 0;
   this.losses = 0;
+  this.pkmn = [Pikachu,Charmander,Bulbasaur,Squirtle,Pidgey,Magikarp]
+
 }
 var userName = 'Ash';
 var player = new Player(userName);

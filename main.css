@@ -1,0 +1,22 @@
+.screen {
+  display: none; }
+
+.choose {
+  display: block; }
+
+.modal-container {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0; }
+  .modal-container .login-modal {
+    background: #fff; }
+
+.gender {
+  height: 100px;
+  width: 100px;
+  background: red;
+  margin: 40px; }
+
+/*# sourceMappingURL=main.css.map */

@@ -4,6 +4,9 @@
 .choose {
   display: block; }
 
+body {
+  color: #00476D; }
+
 .modal-container {
   width: 100vw;
   height: 100vh;
@@ -11,12 +14,71 @@
   position: absolute;
   top: 0; }
   .modal-container .login-modal {
-    background: #fff; }
+    background: #AAd5A7;
+    width: 25em;
+    height: 30em;
+    margin: 0 auto;
+    text-align: center; }
+    .modal-container .login-modal h2 {
+      font-size: 3em;
+      margin: 3em 0 1.0em 0;
+      padding-top: 3em; }
+    .modal-container .login-modal #login-input {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+      .modal-container .login-modal #login-input:hover {
+        transition: .5s;
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); }
+    .modal-container .login-modal #login-btn {
+      color: #00476D;
+      background: #398887;
+      border-radius: .5em;
+      border: solid .1em;
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+      .modal-container .login-modal #login-btn:hover {
+        transition: .5s;
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); }
+
+.choose {
+  margin: 0;
+  text-align: center;
+  background: #AAd5A7; }
+
+h1 {
+  margin: 0;
+  background: #0E486C;
+  color: #FFF;
+  font-size: 6em;
+  padding: 0.3em 0; }
+
+.gender-wrapper {
+  display: inline-flex;
+  width: 70vw;
+  margin: 3em 0; }
 
 .gender {
-  height: 100px;
-  width: 100px;
-  background: red;
-  margin: 40px; }
+  height: 25em;
+  background: #388887;
+  margin: 3em; }
+
+#male {
+  flex: 25%; }
+
+#female {
+  flex: 25%; }
+
+#next-btn {
+  color: #00476D;
+  background: #398887;
+  border-radius: 0.5em;
+  border: solid 0.1em;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  bottom: 6vw;
+  left: 40vw;
+  width: 7vw;
+  height: 3vw; }
+  #next-btn:hover {
+    transition: 0.5s;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); }
 
 /*# sourceMappingURL=main.css.map */

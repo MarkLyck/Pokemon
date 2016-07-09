@@ -1,7 +1,9 @@
+//don't forget to display the entered username on the screen(s?)
+
 var $male = $('#male');
 var $female = $('#female');
 var $nextBtn = $('#next-btn');
-var $pokemonList = $('#pokemonList')
+var $pokemonList = $('#pokemonList');
 
 $male.on('click', function() {
     player.gender = 'male';
@@ -24,6 +26,8 @@ $nextBtn.on('click', function() {
             });
             $pokemonList.append($li);
         });
+
+        //modify so that each time you click a pokemon, the other pokemon don't show up over and over
         $nextBtn.on('click', function() {
             if (player.chosen) {
                 $('.screen').css('display', 'none');

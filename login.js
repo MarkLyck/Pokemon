@@ -8,3 +8,6 @@ $loginBtn.on('click',function(){
     $modalContainer.css('display','none');
   }
 });
+
+
+//// USERNAME looks really funny.... we should change it to welcome to pokemon or Login to play...

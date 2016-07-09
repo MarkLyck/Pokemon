@@ -1,0 +1,13 @@
+.battleScreen {
+    display: none;
+    flex-direction: column;
+    footer {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+.main-box {
+    .action {
+        display: none;
+    }
+}

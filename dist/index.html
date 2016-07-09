@@ -36,12 +36,12 @@
         <section class="opponent">
           <div class="opponent playerInfo">
             <div class="wrapper">
-              <h3 class="pokemonName">Charmander</h3>
-              <h3 class="pokemonLevel">Lv9</h3>
+              <h3 class="pokemonName opponent">Charmander</h3>
+              <h3 class="pokemonLevel opponent">Lv9</h3>
             </div>
             <div class="HP">
               <p class="HP-text">HP</p>
-              <progress value="10" max="100"></progress>
+              <progress class="healthBar opponent" value="10" max="100"></progress>
             </div>
           </div>
           <div class="pokemon"></div>
@@ -50,12 +50,12 @@
           <div class="wrapper">
             <div class="player playerInfo">
               <div class="wrapper">
-                <h3 class="pokemonName">Charmander</h3>
-                <h3 class="pokemonLevel">Lv9</h3>
+                <h3 class="pokemonName player">Charmander</h3>
+                <h3 class="pokemonLevel player">Lv9</h3>
               </div>
               <div class="HP">
                 <p class="HP-text">HP</p>
-                <progress class="healthBar" value="10" max="100"></progress>
+                <progress class="healthBar player" value="10" max="100"></progress>
               </div>
             </div>
             <div class="exp">
@@ -75,7 +75,7 @@
             <h3>PP</h3>
             <h3 class="PP">32/35</h3>
           </div>
-          <h2>type/FLYING</h2>
+          <h2>type/<span id="pokemonType">FLYING</span></h2>
         </div>
       </footer>
     </div>
@@ -107,10 +107,10 @@
 
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
     <script src="app.js" type="text/javascript"></script>
     <script src="login.js" type="text/javascript"></script>
-    <script src="choosePlayer.js" type="text/javascript"></script>
-    <script src="chooseCharacter.js" type="text/javascript"></script>
+    <script src="choose.js" type="text/javascript"></script>
     <script src="battle.js" type="text/javascript"></script>
     <script src="winner.js" type="text/javascript"></script>
   </body>

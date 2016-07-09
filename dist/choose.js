@@ -19,12 +19,15 @@ $nextBtn.on('click', function() {
 
         $nextBtn.text('Battle!');
 
+        $pokemonList.empty();
         player.pkmn.forEach(function(pokemon) {
-            var $li = $('<li><img src="' + pokemon.imgSrc + '"/><p>' + pokemon.name + '</p></li>');
+            var $li = $('<li></li>');
+            $li.css('background-image', 'url("' + pokemon.imgSrc + '")')
             $li.on('click', function() {
                 player.chosen = pokemon;
             });
             $pokemonList.append($li);
+            // $li.css('height', $li.css('width'))
         });
 
         //modify so that each time you click a pokemon, the other pokemon don't show up over and over
@@ -32,6 +35,8 @@ $nextBtn.on('click', function() {
             if (player.chosen) {
                 $('.screen').css('display', 'none');
                 $('.battleScreen').css('display', 'flex');
+                opponent.chosen = opponent.pkmn[Math.floor(Math.random()*opponent.pkmn.length)];
+                console.log(opponent.chosen);
                 battle();
             }
         });

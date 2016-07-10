@@ -6,15 +6,19 @@ var $pokemonMoves = $('.moves-list');
 var $mainBox = $('.main-box');
 var $actionText = $('.action');
 var playerHealth = 0;
+var playerHealthMax = 0;
 var opponentHealth = 0;
+var opponentHealthMax = 0;
 
 function battle() {
     var opponentPokemon = opponent.chosen.name;
     opponentHealth = opponent.chosen.hitPoints;
+    opponentHealthMax = opponentHealth;
     var opponentLevel = opponent.chosen.level;
 
     var playerPokemon = player.chosen.name;
     playerHealth = player.chosen.hitPoints;
+    playerHealthMax = playerHealth;
     var playerLevel = player.chosen.level;
 
     $('.pokemonName.opponent').text(opponentPokemon);
@@ -33,7 +37,8 @@ function battle() {
 
     $('.player.pokemon').attr('src', player.chosen.imgSrc + 'Behind.png');
     $('.opponent.pokemon').attr('src', opponent.chosen.imgSrc + 'Front.png');
-
+    $playerHealthBar.removeClass('low-health medium-health');
+    $opponentHealthBar.removeClass('low-health medium-health');
 
     $pokemonMoves.empty();
     player.chosen.moves.forEach(function(move) {
@@ -71,6 +76,14 @@ function actionMove(move, attacker) {
                 } else {
                     $playerHealthBar.val(playerHealth);
                 }
+
+                if (playerHealth <= playerHealthMax/4){
+                  $playerHealthBar.addClass('low-health');
+                } else if (playerHealth <= playerHealthMax/2){
+                  $playerHealthBar.addClass('medium-health');
+                }
+
+
             } else {
                 opponentHealth -= damage;
 
@@ -80,6 +93,12 @@ function actionMove(move, attacker) {
                     renderWinScreen(player);
                 } else {
                     $opponentHealthBar.val(opponentHealth);
+                }
+
+                if (opponentHealth <= opponentHealthMax/5){
+                  $opponentHealthBar.addClass('low-health');
+                } else if (playerHealth <= playerHealthMax/2){
+                  $opponentHealthBar.addClass('medium-health');
                 }
             }
         } else {

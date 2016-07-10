@@ -88,6 +88,12 @@
     background-color: #18cf7c;
     border-radius: 10px;
   }
+  .medium-health::-webkit-progress-value {
+    background-color: yellow;
+  }
+  .low-health::-webkit-progress-value {
+    background-color: red;
+  }
   .healthBar[value] {
     background-color: #18cf7c;
     border-radius: 10px;

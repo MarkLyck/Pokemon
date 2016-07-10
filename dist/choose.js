@@ -79,20 +79,16 @@ function choosePokemon() {
               }
             });
           }, 1000); // END TIME LOOP
-
         } else {
           battle();
         }
-
     }
 }
 
-
 function putPlayer(playerObj) {
   $.ajax({
-    url: apiURL + player._id,
+    url: apiURL + playerObj._id,
     type: 'PUT',
-    contentType: 'application/json',
     data: playerObj,
     success: function(response) {
       console.log('UPDATED PLAYER');

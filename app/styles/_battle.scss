@@ -27,17 +27,20 @@
 
     }
 }
+#opponent-name {
+  margin-top: 10vh;
+  margin-bottom: 3px;
+}
 #opponent {
     height: calc(50% - 5vh);
     display: flex;
     justify-content: space-between;
-    margin-top: 10vh;
 }
 #player {
   height: calc(50% - 5vh);
     display: flex;
     justify-content: space-between;
-
+    margin-bottom: -1px;
     .wrapper {
       align-self: flex-end;
     }
@@ -108,17 +111,19 @@
 .info-box {
   background: $text-color;
   width: 25%;
-  padding: 3em;
+  padding: 0 3em;
   box-sizing: border-box;
   border: 5px solid $text-color;
   color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   border-left: none;
+  font-size: 1.25vw;
   .wrapper {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
   }
 }
 

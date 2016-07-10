@@ -171,16 +171,20 @@ main {
   .main-box .action {
     display: none; }
 
+#opponent-name {
+  margin-top: 10vh;
+  margin-bottom: 3px; }
+
 #opponent {
   height: calc(50% - 5vh);
   display: flex;
-  justify-content: space-between;
-  margin-top: 10vh; }
+  justify-content: space-between; }
 
 #player {
   height: calc(50% - 5vh);
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  margin-bottom: -1px; }
   #player .wrapper {
     align-self: flex-end; }
 
@@ -238,17 +242,19 @@ main {
 .info-box {
   background: #00476D;
   width: 25%;
-  padding: 3em;
+  padding: 0 3em;
   box-sizing: border-box;
   border: 5px solid #00476D;
   color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  border-left: none; }
+  justify-content: center;
+  border-left: none;
+  font-size: 1.25vw; }
   .info-box .wrapper {
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-between;
+    margin-bottom: 20px; }
 
 .main-box {
   width: 75%;

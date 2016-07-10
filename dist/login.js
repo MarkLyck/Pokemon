@@ -6,6 +6,7 @@ var $modalContainer = $('.modal-container');
 var themeMusic = new Audio('assets/sounds/PokemonTheme.mp3');
 
 var apiURL = 'https://tiny-za-server.herokuapp.com/collections/pokemon/';
+var gameMode = 'singlePlayer'
 
 if (!sessionStorage.userName) {
   $modalContainer.css('display', 'block');
@@ -18,13 +19,14 @@ $singlePlayerBtn.on('click',function(){
   login();
 });
 $multiPlayerBtn.on('click',function(){
-  player.userName = $loginInput.val();
+  gameMode = 'multiPlayer'
+  player.userName = $loginInput.val().trim();
   $.ajax({
     url: apiURL,
     type: 'GET',
     contentType: 'application/json',
     success: function(response) {
-      if (playerExists(response)) {
+      if (playerExists(response) !== false) {
         player = playerExists(response);
         console.log('SUCCESS FOUND PLAYER');
       } else {
@@ -33,14 +35,14 @@ $multiPlayerBtn.on('click',function(){
 
     }
   });
-  // login();
+  login();
 });
 
 function login(){
   let re = /[a-zA-Z0-9]/g;
   if (re.test($loginInput.val())) {
     themeMusic.pause();
-    sessionStorage.userName = $loginInput.val();
+    sessionStorage.userName = $loginInput.val().trim();
     console.log('USER BEFORE: ', player.userName);
     player.userName = $loginInput.val();
     console.log('USER AFTER: ', player.userName);
@@ -52,17 +54,17 @@ function login(){
 
 function playerExists(response) {
   console.log('Looking for player');
-  response.filter(function(user) {
-    if (user.userName === $loginInput.val()) {
+  var foundPlayer = false;
+  response.forEach(function(user) {
+    if (user.userName.toLowerCase() === $loginInput.val().toLowerCase()) {
       console.log('Found matching player');
-      return true;
+      foundPlayer = true;
     }
   });
-  if (response.length > 0) {
-    console.log('returning matched player');
+  console.log('RESP AFTER: ', response);
+  if (foundPlayer) {
     return response[0];
   } else {
-    console.log('Didn\'t find player');
     return false;
   }
 }

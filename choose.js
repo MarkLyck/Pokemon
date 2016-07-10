@@ -48,6 +48,54 @@ function choosePokemon() {
         $('.battleScreen').css('display', 'flex');
         opponent.chosen = opponent.pkmn[Math.floor(Math.random()*opponent.pkmn.length)];
         console.log(opponent.chosen);
-        battle();
+        if (gameMode === 'multiPlayer') {
+          $('.modal-container').css('display', 'flex');
+          $('.modal').css('display', 'none');
+          $('.waiting-modal').css('display', 'flex');
+          battle();
+
+          var searchingForOpponent = setInterval(function() {
+            $.ajax({
+              url: apiURL,
+              type: 'GET',
+              success: function(response) {
+
+                console.log('TIME LOOP');
+                response.filter(foundPlayers => {
+                  if (player.isWaiting === true) {
+                    return true;
+                  }
+                })
+
+                if (response.length > 1) {
+                  console.log('FOUND OPPONENT');
+                  clearInterval(searchingForOpponent);
+
+                  opponent = response[1];
+                  player.isWaiting = false;
+                  $modalContainer.css('display', 'none');
+                  putPlayer(player);
+                }
+              }
+            });
+          }, 1000); // END TIME LOOP
+
+        } else {
+          battle();
+        }
+
     }
+}
+
+
+function putPlayer(playerObj) {
+  $.ajax({
+    url: apiURL + player._id,
+    type: 'PUT',
+    contentType: 'application/json',
+    data: playerObj,
+    success: function(response) {
+      console.log('UPDATED PLAYER');
+    }
+  });
 }

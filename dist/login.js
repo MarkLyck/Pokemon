@@ -5,7 +5,7 @@ var $modalContainer = $('.modal-container');
 
 var themeMusic = new Audio('assets/sounds/PokemonTheme.mp3');
 
-var apiURL = 'https://tiny-za-server.herokuapp.com/collections/pokemon/';
+var apiURL = 'https://tiny-za-server.herokuapp.com/collections/pokebattle/';
 var gameMode = 'singlePlayer'
 
 if (!sessionStorage.userName) {

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Project Title</title>
+    <title>Pokemon</title>
 
     <!-- Normalise -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" media="screen" title="no title" charset="utf-8">
@@ -33,6 +33,7 @@
 
     <div class="battleScreen screen">
       <main>
+        <h3 id="opponent-name">Shannon</h3>
         <section class="opponent" id="opponent">
           <div class="opponent player-info">
             <div class="wrapper">
@@ -76,7 +77,7 @@
             <h3>PP</h3>
             <h3 class="PP">32/35</h3>
           </div>
-          <h2>type/<span id="pokemonType">FLYING</span></h2>
+          <h3>type/<span id="pokemonType">FLYING</span></h3>
         </div>
       </footer>
     </div>
@@ -84,13 +85,14 @@
 
     <div class="winScreen screen">
       <header>
-        <h3>Winner</h3>
+        <h1>Winner</h1>
       </header>
       <main id="winner">
         <img id="winnerPokemon" src="#" alt="" />
         <img id="winnerPlayer" src="#" alt="" />
       </main>
       <footer>
+        <h3 id="winner-name"></h3>
         <button class="new-game-btn" type="button" name="button">New Game</button>
       </footer>
     </div>
@@ -100,7 +102,7 @@
 
     <div class="modal-container">
       <div class="login-modal modal">
-        <h2>Username</h2>
+        <h2>Poké Battle</h2>
         <input id="login-input" type="text" name="name" value="" placeholder="Username">
         <button id="login-btn" type="button" name="button">Login</button>
       </div>

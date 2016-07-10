@@ -11,8 +11,8 @@ var tackle = new Move();
 
 function Pokemon (name, type, imgSrc, hitPoints, moves) {
   this.name = name;
-  this.level = 1;
-  this.exP = 0;
+  this.level = 5;
+  this.exP = 20;
   this.exPMax = 100;
   this.type = type;
   this.imgSrc = imgSrc;
@@ -35,6 +35,7 @@ function Player (userName, playerNo){
   this.losses = 0;
   this.pkmn = [Pikachu,Charmander,Bulbasaur,Squirtle,Pidgey,Magikarp];
 }
-var userName = 'Ash';
-var player = new Player(userName);
-var opponent = new Player('opponent', 2);
+
+// var userName = 'Ash';
+var player = new Player('Ash');
+var opponent = new Player('Computer', 2);

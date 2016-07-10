@@ -2,6 +2,7 @@
     display: none;
     flex-direction: column;
     align-items: center;
+
     footer {
         height: 25vh;
         width: 100vw;
@@ -19,21 +20,27 @@
     }
 }
 .main-box {
+  border: 5px solid $text-color;
+  box-sizing: border-box;
     .action {
         display: none;
+
     }
+}
+#opponent-name {
+  margin-top: 10vh;
+  margin-bottom: 3px;
 }
 #opponent {
     height: calc(50% - 5vh);
     display: flex;
     justify-content: space-between;
-    margin-top: 10vh;
 }
 #player {
   height: calc(50% - 5vh);
     display: flex;
     justify-content: space-between;
-
+    margin-bottom: -1px;
     .wrapper {
       align-self: flex-end;
     }
@@ -41,24 +48,32 @@
 .pokemon {
     max-height: 32.5vh;
     min-width: 32.5vh;
+    transition: transform 200ms;
 }
 .player-info {
-    border: 4px solid black;
+    border: 4px solid $text-color;
     max-height: 2.5em;
     padding: 1em;
+
     div {
         display: flex;
         align-items: center;
     }
     .wrapper {
         justify-content: space-between;
+        .pokemonName{
+          margin-right: 1em;
+        }
     }
 }
 .exp {
   display: flex;
+  margin-top: .5em;
   justify-content: flex-end;
 }
 .HP {
+  display: flex;
+  align-items: center;
   background: #405C4B;
   color: #FFB03D;
   padding: 2px;
@@ -67,6 +82,7 @@
     border: 2px solid #FFF;
     margin-right: 3px;
     border-radius: 10px;
+    width: 100%;
   }
   .healthBar::-webkit-progress-bar {
     background-color: #3B404A;
@@ -76,28 +92,46 @@
     background-color: #18cf7c;
     border-radius: 10px;
   }
+  .medium-health::-webkit-progress-value {
+    background-color: yellow;
+  }
+  .low-health::-webkit-progress-value {
+    background-color: red;
+  }
   .healthBar[value] {
     background-color: #18cf7c;
     border-radius: 10px;
   }
   p {
+    margin-top: 3px;
     padding: 0 5px;
   }
 }
 
 .info-box {
-  background: red;
+  background: $text-color;
   width: 25%;
-  padding: 3em;
+  padding: 0 3em;
   box-sizing: border-box;
+  border: 5px solid $text-color;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: none;
+  font-size: 1.25vw;
   .wrapper {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
   }
 }
 
 .main-box {
   width: 75%;
+  height: 25vh;
+  justify-content: center;
+  align-items: center;
   ul {
     display: flex;
     flex-wrap: wrap;
@@ -109,6 +143,37 @@
       align-items: center;
       padding-left: 10%;
       box-sizing: border-box;
+      color: #FFF;
+      button {
+        background: none;
+        border: none;
+        font-size: 3vw;
+        color: #FFF;
+      }
     }
   }
+}
+
+#expBar {
+  border: 2px solid #FFF;
+  margin-right: 3px;
+  border-radius: 10px;
+  width: 100%;
+}
+#expBar::-webkit-progress-bar {
+  background-color: #3B404A;
+  border-radius: 10px;
+}
+#expBar::-webkit-progress-value {
+  background-color: $primary-background;
+  border-radius: 10px;
+}
+#expBar[value] {
+  background-color: $primary-background;
+  border-radius: 10px;
+}
+
+.action {
+  color: #fff;
+  font-size: 1.5em;
 }

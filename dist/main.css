@@ -1,12 +1,21 @@
+@font-face {
+  font-family: pokemonFont;
+  src: url("assets/fonts/PokemonFont.ttf"); }
+body, p, h3 {
+  font-family: pokemonFont;
+  margin: 0;
+  padding: 0; }
+
 .screen {
   display: none; }
 
 .choose {
   display: block; }
 
-h1, h2, h3, p {
+h1, h2 {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  font-family: Avenir; }
 
 body {
   color: #00476D; }
@@ -22,26 +31,29 @@ body {
     background: #0ba0d7;
     width: 25em;
     height: 30em;
-    margin: 0 auto;
-    text-align: center; }
+    margin: 50vh auto 0 auto;
+    text-align: center;
+    transform: translateY(-50%); }
     .modal-container .login-modal h2 {
-      font-size: 3em;
-      margin: 3em 0 1.0em 0;
-      padding-top: 3em; }
+      font-size: 3.5em;
+      font-family: Pokemon Solid;
+      padding: 1em 0; }
     .modal-container .login-modal #login-input {
-      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
-      .modal-container .login-modal #login-input:hover {
-        transition: .5s;
-        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); }
+      padding: 15px;
+      border: none;
+      border-radius: 3px;
+      outline: none; }
     .modal-container .login-modal #login-btn {
+      background: none;
+      border: 2px solid #fff;
+      padding: 25px 50px;
+      border-radius: 20px;
       color: #fff;
-      background: #0ba0d7;
-      border-radius: .5em;
-      border: solid .1em;
-      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+      margin-top: 3em; }
       .modal-container .login-modal #login-btn:hover {
-        transition: .5s;
-        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); }
+        transition: .2s;
+        background-color: #fff;
+        color: #0ba0d7; }
 
 .choose {
   margin: 0;
@@ -153,28 +165,36 @@ main {
     flex-direction: column;
     justify-content: space-between; }
 
-.main-box .action {
-  display: none; }
+.main-box {
+  border: 5px solid #00476D;
+  box-sizing: border-box; }
+  .main-box .action {
+    display: none; }
+
+#opponent-name {
+  margin-top: 10vh;
+  margin-bottom: 3px; }
 
 #opponent {
   height: calc(50% - 5vh);
   display: flex;
-  justify-content: space-between;
-  margin-top: 10vh; }
+  justify-content: space-between; }
 
 #player {
   height: calc(50% - 5vh);
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  margin-bottom: -1px; }
   #player .wrapper {
     align-self: flex-end; }
 
 .pokemon {
   max-height: 32.5vh;
-  min-width: 32.5vh; }
+  min-width: 32.5vh;
+  transition: transform 200ms; }
 
 .player-info {
-  border: 4px solid black;
+  border: 4px solid #00476D;
   max-height: 2.5em;
   padding: 1em; }
   .player-info div {
@@ -182,12 +202,17 @@ main {
     align-items: center; }
   .player-info .wrapper {
     justify-content: space-between; }
+    .player-info .wrapper .pokemonName {
+      margin-right: 1em; }
 
 .exp {
   display: flex;
+  margin-top: .5em;
   justify-content: flex-end; }
 
 .HP {
+  display: flex;
+  align-items: center;
   background: #405C4B;
   color: #FFB03D;
   padding: 2px;
@@ -195,30 +220,47 @@ main {
   .HP .healthBar {
     border: 2px solid #FFF;
     margin-right: 3px;
-    border-radius: 10px; }
+    border-radius: 10px;
+    width: 100%; }
   .HP .healthBar::-webkit-progress-bar {
     background-color: #3B404A;
     border-radius: 10px; }
   .HP .healthBar::-webkit-progress-value {
     background-color: #18cf7c;
     border-radius: 10px; }
+  .HP .medium-health::-webkit-progress-value {
+    background-color: yellow; }
+  .HP .low-health::-webkit-progress-value {
+    background-color: red; }
   .HP .healthBar[value] {
     background-color: #18cf7c;
     border-radius: 10px; }
   .HP p {
+    margin-top: 3px;
     padding: 0 5px; }
 
 .info-box {
-  background: red;
+  background: #00476D;
   width: 25%;
-  padding: 3em;
-  box-sizing: border-box; }
+  padding: 0 3em;
+  box-sizing: border-box;
+  border: 5px solid #00476D;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: none;
+  font-size: 1.25vw; }
   .info-box .wrapper {
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-between;
+    margin-bottom: 20px; }
 
 .main-box {
-  width: 75%; }
+  width: 75%;
+  height: 25vh;
+  justify-content: center;
+  align-items: center; }
   .main-box ul {
     display: flex;
     flex-wrap: wrap;
@@ -229,7 +271,35 @@ main {
       display: flex;
       align-items: center;
       padding-left: 10%;
-      box-sizing: border-box; }
+      box-sizing: border-box;
+      color: #FFF; }
+      .main-box ul li button {
+        background: none;
+        border: none;
+        font-size: 3vw;
+        color: #FFF; }
+
+#expBar {
+  border: 2px solid #FFF;
+  margin-right: 3px;
+  border-radius: 10px;
+  width: 100%; }
+
+#expBar::-webkit-progress-bar {
+  background-color: #3B404A;
+  border-radius: 10px; }
+
+#expBar::-webkit-progress-value {
+  background-color: #0ba0d7;
+  border-radius: 10px; }
+
+#expBar[value] {
+  background-color: #0ba0d7;
+  border-radius: 10px; }
+
+.action {
+  color: #fff;
+  font-size: 1.5em; }
 
 .winScreen {
   height: 100vh;
@@ -242,7 +312,7 @@ main {
     font-size: 95px;
     font-weight: 100; }
   .winScreen #winner {
-    height: 60vh;
+    height: 50vh;
     position: relative; }
     .winScreen #winner #winnerPlayer {
       height: 100%; }
@@ -251,17 +321,21 @@ main {
       position: absolute;
       bottom: 0;
       right: 0; }
-  .winScreen footer .new-game-btn {
-    background: none;
-    border: 2px solid #fff;
-    padding: 25px 50px;
-    border-radius: 20px;
-    color: #fff;
-    margin-top: 30px; }
-    .winScreen footer .new-game-btn:hover {
-      background: #fff;
-      color: #0ba0d7; }
-    .winScreen footer .new-game-btn:active {
-      background: #fff; }
+  .winScreen footer {
+    text-align: center; }
+    .winScreen footer #winner-name {
+      margin-top: 1em; }
+    .winScreen footer .new-game-btn {
+      background: none;
+      border: 2px solid #fff;
+      padding: 25px 50px;
+      border-radius: 20px;
+      color: #fff;
+      margin-top: 30px; }
+      .winScreen footer .new-game-btn:hover {
+        background: #fff;
+        color: #0ba0d7; }
+      .winScreen footer .new-game-btn:active {
+        background: #fff; }
 
 /*# sourceMappingURL=main.css.map */

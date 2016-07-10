@@ -1,3 +1,13 @@
+@font-face {
+  font-family: pokemonFont;
+  src: url("assets/fonts/PokemonFont.ttf");
+}
+body,p,h3 {
+  font-family: pokemonFont;
+  margin: 0;
+  padding: 0;
+}
+
 .screen{
   display:none;
 }
@@ -6,9 +16,10 @@
   display:block;
 }
 
-h1,h2,h3,p {
+h1,h2 {
   margin: 0;
   padding: 0;
+  font-family: Avenir;
 }
 
 

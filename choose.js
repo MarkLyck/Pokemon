@@ -44,37 +44,65 @@ function choosePokemon() {
     if (player.chosen) {
         $('.screen').css('display', 'none');
         $('.battleScreen').css('display', 'flex');
-        opponent.chosen = opponent.pkmn[Math.floor(Math.random()*opponent.pkmn.length)];
-        console.log(opponent.chosen);
+        if (gameMode === 'singlePlayer') {
+          opponent.chosen = opponent.pkmn[Math.floor(Math.random()*opponent.pkmn.length)];
+        }
         if (gameMode === 'multiPlayer') {
           player.isWaiting = true;
+          putPlayer(player);
           $('.modal-container').css('display', 'flex');
           $('.modal').css('display', 'none');
           $('.waiting-modal').css('display', 'flex');
-          battle();
+
+
 
           var searchingForOpponent = setInterval(function() {
             $.ajax({
               url: apiURL,
               type: 'GET',
               success: function(response) {
-
-                console.log('TIME LOOP');
-                response = response.filter(foundPlayers => {
-                  if (player.isWaiting === true) {
+                console.log('WAITING FOR OPPONENT...');
+                var waitingPlayers = response.filter(function(playerFound) {
+                  if (playerFound.isWaiting === true && playerFound.userName !== player.userName) {
                     return true;
+                  } else if (playerFound.userName === player.userName) {
+                    player = playerFound;
                   }
-                })
+                });
 
-                if (response.length > 1) {
-                  console.log('FOUND OPPONENT');
+                console.log('Waiting players: ', waitingPlayers);
+                console.log(waitingPlayers.length);
+
+                if (waitingPlayers.length > 0) {
                   clearInterval(searchingForOpponent);
 
-                  opponent = response[1];
-                  console.log(opponent);
+                  console.log('POSSIBLE OPPONENTS: ', waitingPlayers);
+                  opponent = waitingPlayers[0];
+
+                  opponent.opponent = player._id;
+
+                  console.log('FOUND OPPONENT: ', opponent);
                   player.isWaiting = false;
                   $modalContainer.css('display', 'none');
+
                   putPlayer(player);
+                  putPlayer(opponent);
+                  battle();
+                }
+                if (player.opponent) {
+                  console.log('HURRAY');
+                  clearInterval(searchingForOpponent);
+                  $.ajax({
+                    url: apiURL + player.opponent,
+                    type: 'GET',
+                    success: function(response) {
+                      opponent = response;
+                      player.isWaiting = false;
+                      $modalContainer.css('display', 'none');
+                      putPlayer(player);
+                      battle();
+                    }
+                  });
                 }
               }
             });
@@ -92,7 +120,7 @@ function putPlayer(playerObj) {
     contentType: 'application/json',
     data: JSON.stringify(playerObj),
     success: function(response) {
-      console.log('UPDATED PLAYER');
+      // console.log('UPDATED PLAYER');
     }
   });
 }

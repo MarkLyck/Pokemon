@@ -27,9 +27,10 @@ $multiPlayerBtn.on('click',function(){
     type: 'GET',
     contentType: 'application/json',
     success: function(response) {
-      if (playerExists(response) !== false) {
-        player = playerExists(response);
-        console.log('SUCCESS FOUND PLAYER');
+      var playerFound = playerExists(response)
+      if (playerFound !== false) {
+        player = playerFound;
+        // console.log('SUCCESS FOUND PLAYER');
       } else {
         postPlayer();
       }
@@ -44,9 +45,9 @@ function login(){
   if (re.test($loginInput.val())) {
     themeMusic.pause();
     sessionStorage.userName = $loginInput.val().trim();
-    console.log('USER BEFORE: ', player.userName);
+    // console.log('USER BEFORE: ', player.userName);
     player.userName = $loginInput.val();
-    console.log('USER AFTER: ', player.userName);
+    // console.log('USER AFTER: ', player.userName);
     $modalContainer.css('display','none');
   } else {
     $('.login-modal').effect( "shake" );
@@ -54,24 +55,23 @@ function login(){
 }
 
 function playerExists(response) {
-  console.log('Looking for player');
   var foundPlayer = false;
   response.forEach(function(user) {
     if (user.userName.toLowerCase() === $loginInput.val().toLowerCase()) {
-      console.log('Found matching player');
       foundPlayer = true;
     }
   });
-  console.log('RESP AFTER: ', response);
   if (foundPlayer) {
+    console.log('Player already exists');
     return response[0];
   } else {
+    console.log('Creating new Player');
     return false;
   }
 }
 
 function postPlayer(playerObj){
-  console.log('POSTING PLAYER');
+  // console.log('POSTING PLAYER');
   $.ajax({
       url: apiURL,
       type:'POST',
@@ -79,7 +79,7 @@ function postPlayer(playerObj){
       data: JSON.stringify(player),
       success: function(response){
         player._id = response._id;
-        console.log(response);
+        // console.log(response);
       }
   });
 }

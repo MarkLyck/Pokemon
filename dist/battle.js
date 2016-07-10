@@ -3,6 +3,7 @@ var $playerHealthBar = $('.healthBar.player');
 var $playerExBar = $('#expBar');
 var $pokemonType = $('#pokemonType');
 var $pokemonMoves = $('.moves-list');
+var $mainBox = $('.main-box');
 var $actionText = $('.action');
 var playerHealth = 0;
 var opponentHealth = 0;
@@ -98,7 +99,12 @@ function actionMove(move, attacker) {
 function resetMoves() {
     $pokemonMoves.css('display', 'none');
     $actionText.css('display', 'inline');
+    $mainBox.css('display', 'flex');
+
+
+
     window.setTimeout(function() {
+        $mainBox.css('display', 'block');
         $pokemonMoves.css('display', 'flex');
         $actionText.css('display', 'none');
     }, 1500);

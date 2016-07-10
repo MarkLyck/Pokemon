@@ -12,7 +12,7 @@ var tackle = new Move();
 function Pokemon (name, type, imgSrc, hitPoints, moves) {
   this.name = name;
   this.level = 1;
-  this.exP = 0;
+  this.exP = 20;
   this.exPMax = 100;
   this.type = type;
   this.imgSrc = imgSrc;

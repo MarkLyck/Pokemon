@@ -17,24 +17,24 @@
 
     <div class="choose screen">
       <header>
-        <h1>Choose Player</h1>
+        <h1 id="chooseTitle">Choose Player</h1>
       </header>
       <main>
         <div class="gender-wrapper">
-          <div class="gender box" id="male"></div>
-          <div class="gender box"  id="female"></div>
+          <div class="gender box male" id="male"></div>
+          <div class="gender box female"  id="female"></div>
 
 
         </div>
         <ul id="pokemonList"></ul>
-        <button id="next-btn" type="button" name="button">Next</button>
+        <!-- <button id="next-btn" type="button" name="button">Next</button> -->
       </main>
     </div>
 
     <div class="battleScreen screen">
       <main>
-        <section class="opponent">
-          <div class="opponent playerInfo">
+        <section class="opponent" id="opponent">
+          <div class="opponent player-info">
             <div class="wrapper">
               <h3 class="pokemonName opponent">Charmander</h3>
               <h3 class="pokemonLevel opponent">Lv9</h3>
@@ -44,11 +44,12 @@
               <progress class="healthBar opponent" value="10" max="100"></progress>
             </div>
           </div>
-          <div class="pokemon"></div>
+          <img class="opponent pokemon" />
         </section>
-        <section class="player">
+        <section class="player" id="player">
+          <img class="player pokemon" />
           <div class="wrapper">
-            <div class="player playerInfo">
+            <div class="player player-info">
               <div class="wrapper">
                 <h3 class="pokemonName player">Charmander</h3>
                 <h3 class="pokemonLevel player">Lv9</h3>
@@ -59,10 +60,10 @@
               </div>
             </div>
             <div class="exp">
+              <p>EXP</p>
               <progress id="expBar" value="10" max="100"></progress>
             </div>
           </div>
-          <div class="pokemon"></div>
         </section>
       </main>
       <footer>
@@ -82,9 +83,9 @@
 
 
     <div class="winScreen screen">
-      <head>
+      <header>
         <h3>Winner</h3>
-      </head>
+      </header>
       <main id="winner">
         <img id="winnerPokemon" src="#" alt="" />
         <img id="winnerPlayer" src="#" alt="" />

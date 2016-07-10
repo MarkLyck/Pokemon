@@ -30,12 +30,20 @@ function battle() {
     $playerExBar.val(player.chosen.exP);
     $pokemonType.text(player.chosen.type.toUpperCase());
 
+    $('.player.pokemon').attr('src', player.chosen.imgSrc + 'Behind.png');
+    $('.opponent.pokemon').attr('src', opponent.chosen.imgSrc + 'Front.png');
+
+
     $pokemonMoves.empty();
     player.chosen.moves.forEach(function(move) {
         var $move = $('<li><button>' + move.moveName + '</button></li>')
         $pokemonMoves.append($move);
         $move.on('click', actionMove.bind(null, move));
     });
+    while ($pokemonMoves.children().length < 4) {
+      var $missingMove = $('<li>—</li>')
+      $pokemonMoves.append($missingMove);
+    }
 }
 
 function actionMove(move, attacker) {
@@ -58,7 +66,7 @@ function actionMove(move, attacker) {
                 if (playerHealth <= 0) {
                     console.log('YOU LOSE!');
                     $playerHealthBar.val(0);
-                    renderWinScreen('opponent');
+                    renderWinScreen(opponent);
                 } else {
                     $playerHealthBar.val(playerHealth);
                 }
@@ -68,7 +76,7 @@ function actionMove(move, attacker) {
                 if (opponentHealth <= 0) {
                     console.log('YOU WIN!');
                     $opponentHealthBar.val(0);
-                    renderWinScreen('player');
+                    renderWinScreen(player);
                 } else {
                     $opponentHealthBar.val(opponentHealth);
                 }
@@ -111,7 +119,6 @@ function didCritHit(move) {
         return false;
     }
 }
-
 
 function computerMove() {
     var opponentMove = opponent.chosen.moves[Math.floor(Math.random() * opponent.chosen.moves.length)];

@@ -7,38 +7,47 @@ var $pokemonList = $('#pokemonList');
 
 $male.on('click', function() {
     player.gender = 'male';
+    opponent.gender = 'female';
+    $('.gender').removeClass('selected')
+    $(this).addClass('selected')
+    selectPokemon();
 });
+
 $female.on('click', function() {
     player.gender = 'female';
+    opponent.gender= 'male';
+    $('.gender').removeClass('selected')
+    $(this).addClass('selected')
+    selectPokemon();
 });
 
-$nextBtn.on('click', function() {
-    if (player.gender) {
-        $('.gender-wrapper').css('display', 'none');
-        $('#pokemonList').css('display', 'flex');
+function selectPokemon() {
+  if (player.gender) {
+      $('#chooseTitle').text('Choose Pokemon');
+      $('.gender-wrapper').css('display', 'none');
+      $('#pokemonList').css('display', 'flex');
 
-        $nextBtn.text('Battle!');
+      $nextBtn.text('Battle!');
 
-        $pokemonList.empty();
-        player.pkmn.forEach(function(pokemon) {
-            var $li = $('<li></li>');
-            $li.css('background-image', 'url("' + pokemon.imgSrc + '")')
-            $li.on('click', function() {
-                player.chosen = pokemon;
-            });
-            $pokemonList.append($li);
-            // $li.css('height', $li.css('width'))
-        });
+      $pokemonList.empty();
+      player.pkmn.forEach(function(pokemon) {
+          var $li = $('<li></li>');
+          $li.css('background-image', 'url("' + pokemon.imgSrc + '.png")')
+          $li.on('click', function() {
+              player.chosen = pokemon;
+          });
+          $pokemonList.append($li);
+          $li.on('click', choosePokemon);
+      });
+  }
+}
 
-        //modify so that each time you click a pokemon, the other pokemon don't show up over and over
-        $nextBtn.on('click', function() {
-            if (player.chosen) {
-                $('.screen').css('display', 'none');
-                $('.battleScreen').css('display', 'flex');
-                opponent.chosen = opponent.pkmn[Math.floor(Math.random()*opponent.pkmn.length)];
-                console.log(opponent.chosen);
-                battle();
-            }
-        });
+function choosePokemon() {
+    if (player.chosen) {
+        $('.screen').css('display', 'none');
+        $('.battleScreen').css('display', 'flex');
+        opponent.chosen = opponent.pkmn[Math.floor(Math.random()*opponent.pkmn.length)];
+        console.log(opponent.chosen);
+        battle();
     }
-});
+}

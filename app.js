@@ -37,4 +37,4 @@ function Player (userName, playerNo){
 }
 var userName = 'Ash';
 var player = new Player(userName);
-var opponent = new Player('opponent', 2);
+var opponent = new Player('Computer', 2);

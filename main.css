@@ -31,7 +31,7 @@ body {
     background: #0ba0d7;
     width: 25em;
     height: 30em;
-    margin: 50% auto 0 auto;
+    margin: 50vh auto 0 auto;
     text-align: center;
     transform: translateY(-50%); }
     .modal-container .login-modal h2 {
@@ -305,7 +305,7 @@ main {
     font-size: 95px;
     font-weight: 100; }
   .winScreen #winner {
-    height: 60vh;
+    height: 50vh;
     position: relative; }
     .winScreen #winner #winnerPlayer {
       height: 100%; }
@@ -314,17 +314,21 @@ main {
       position: absolute;
       bottom: 0;
       right: 0; }
-  .winScreen footer .new-game-btn {
-    background: none;
-    border: 2px solid #fff;
-    padding: 25px 50px;
-    border-radius: 20px;
-    color: #fff;
-    margin-top: 30px; }
-    .winScreen footer .new-game-btn:hover {
-      background: #fff;
-      color: #0ba0d7; }
-    .winScreen footer .new-game-btn:active {
-      background: #fff; }
+  .winScreen footer {
+    text-align: center; }
+    .winScreen footer #winner-name {
+      margin-top: 1em; }
+    .winScreen footer .new-game-btn {
+      background: none;
+      border: 2px solid #fff;
+      padding: 25px 50px;
+      border-radius: 20px;
+      color: #fff;
+      margin-top: 30px; }
+      .winScreen footer .new-game-btn:hover {
+        background: #fff;
+        color: #0ba0d7; }
+      .winScreen footer .new-game-btn:active {
+        background: #fff; }
 
 /*# sourceMappingURL=main.css.map */

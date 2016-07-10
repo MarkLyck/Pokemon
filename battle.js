@@ -44,11 +44,11 @@ function battle() {
     player.chosen.moves.forEach(function(move) {
         var $move = $('<li><button>' + move.moveName + '</button></li>')
         $pokemonMoves.append($move);
-        $move.on('click', actionMove.bind(null, move));
+        $move.on('click', actionMove.bind(null, move, player));
     });
     while ($pokemonMoves.children().length < 4) {
-      var $missingMove = $('<li>—</li>')
-      $pokemonMoves.append($missingMove);
+        var $missingMove = $('<li>—</li>')
+        $pokemonMoves.append($missingMove);
     }
 }
 
@@ -57,7 +57,7 @@ function actionMove(move, attacker) {
     if (move.moveName === 'tackle') {
         if (didHit(move)) {
             console.log('HIT');
-
+            console.log(attacker);
             let damage = 0;
             if (didCritHit(move)) {
                 damage = move.damage * move.critDmgMod;
@@ -65,8 +65,14 @@ function actionMove(move, attacker) {
                 resetMoves();
             } else {
                 damage = move.damage;
+                if (attacker === player) {
+                  $actionText.text(attacker.chosen.name + ' used ' + move.moveName + '!');
+                } else {
+                  $actionText.text('Enemy ' + attacker.chosen.name + ' used ' + move.moveName + '!');
+                }
+                  resetMoves();
             }
-            if (attacker === 'opponent') {
+            if (attacker === opponent) {
                 playerHealth -= damage;
 
                 if (playerHealth <= 0) {
@@ -77,10 +83,10 @@ function actionMove(move, attacker) {
                     $playerHealthBar.val(playerHealth);
                 }
 
-                if (playerHealth <= playerHealthMax/4){
-                  $playerHealthBar.addClass('low-health');
-                } else if (playerHealth <= playerHealthMax/2){
-                  $playerHealthBar.addClass('medium-health');
+                if (playerHealth <= playerHealthMax / 4) {
+                    $playerHealthBar.addClass('low-health');
+                } else if (playerHealth <= playerHealthMax / 2) {
+                    $playerHealthBar.addClass('medium-health');
                 }
 
 
@@ -95,23 +101,25 @@ function actionMove(move, attacker) {
                     $opponentHealthBar.val(opponentHealth);
                 }
 
-                if (opponentHealth <= opponentHealthMax/5){
-                  $opponentHealthBar.addClass('low-health');
-                } else if (playerHealth <= playerHealthMax/2){
-                  $opponentHealthBar.addClass('medium-health');
+                if (opponentHealth <= opponentHealthMax / 5) {
+                    $opponentHealthBar.addClass('low-health');
+                } else if (playerHealth <= playerHealthMax / 2) {
+                    $opponentHealthBar.addClass('medium-health');
                 }
             }
         } else {
             console.log('MISSED');
-            $actionText.text(player.chosen.name + ' missed!');
+            $actionText.text(attacker.chosen.name + ' missed!');
             resetMoves();
         }
     }
-    if (attacker === 'opponent') {
+    if (attacker === opponent) {
         $pokemonMoves.children('li').children('button').attr('disabled', false);
 
     } else {
-        computerMove();
+        window.setTimeout(function() {
+            computerMove();
+        }, 1500);
     }
 }
 
@@ -119,8 +127,6 @@ function resetMoves() {
     $pokemonMoves.css('display', 'none');
     $actionText.css('display', 'inline');
     $mainBox.css('display', 'flex');
-
-
 
     window.setTimeout(function() {
         $mainBox.css('display', 'block');
@@ -147,7 +153,7 @@ function didCritHit(move) {
 
 function computerMove() {
     var opponentMove = opponent.chosen.moves[Math.floor(Math.random() * opponent.chosen.moves.length)];
-    actionMove(opponentMove, 'opponent');
+    actionMove(opponentMove, opponent);
     console.log(opponentMove);
 
 }

@@ -1,4 +1,5 @@
 function battleMultiplayerOpponentMove(move, attacker) {
+  console.log('battleMultiplayerOpponentMove FUNCTION');
     if (move.moveName === 'tackle') {
         if (!attacker.didMiss) {
             $actionText.text('Enemy ' + attacker.chosen.name + ' used ' + move.moveName);
@@ -6,13 +7,22 @@ function battleMultiplayerOpponentMove(move, attacker) {
             tackleSound.currentTime = 0;
             tackleSound.play();
             tackleAnimation(attacker);
+            $playerHealthBar.val(player.chosen.hitPoints);
         } else {
           $actionText.text(attacker.chosen.name + ' missed!');
           missAnimation(attacker);
           MissSound.currentTime = 0;
           MissSound.play();
-
         }
-        resetMoves();
+        window.setTimeout(function() {
+            $mainBox.css('display', 'block');
+            $pokemonMoves.css('display', 'flex');
+            $actionText.css('display', 'none');
+            $pokemonMoves.children('li').children('button').attr('disabled', false);
+            // $pokemonMoves.children('li').children('button').on('click', actionMove.bind(null, player.chosen.moves[0], player));
+        }, 500);
     }
 }
+
+
+//file:///Users/marklyck/tiy/day-20/assignments/Pokemon/dist/index.html

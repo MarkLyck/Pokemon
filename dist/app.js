@@ -30,7 +30,7 @@ var Magikarp = new Pokemon('Magikarp', 'water', 'assets/images/pokemon_character
 function Player (userName, playerNo){
   this.userName = userName;
   this.playerNo = playerNo || 1;
-  this.isWaiting = true;
+  this.isWaiting = false;
   this.wins = 0;
   this.losses = 0;
   this.pkmn = [Pikachu,Charmander,Bulbasaur,Squirtle,Pidgey,Magikarp];

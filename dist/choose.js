@@ -27,8 +27,6 @@ function selectPokemon() {
       $('.gender-wrapper').css('display', 'none');
       $('#pokemonList').css('display', 'flex');
 
-      $nextBtn.text('Battle!');
-
       $pokemonList.empty();
       player.pkmn.forEach(function(pokemon) {
           var $li = $('<li></li>');
@@ -49,6 +47,7 @@ function choosePokemon() {
         opponent.chosen = opponent.pkmn[Math.floor(Math.random()*opponent.pkmn.length)];
         console.log(opponent.chosen);
         if (gameMode === 'multiPlayer') {
+          player.isWaiting = true;
           $('.modal-container').css('display', 'flex');
           $('.modal').css('display', 'none');
           $('.waiting-modal').css('display', 'flex');
@@ -61,7 +60,7 @@ function choosePokemon() {
               success: function(response) {
 
                 console.log('TIME LOOP');
-                response.filter(foundPlayers => {
+                response = response.filter(foundPlayers => {
                   if (player.isWaiting === true) {
                     return true;
                   }
@@ -72,6 +71,7 @@ function choosePokemon() {
                   clearInterval(searchingForOpponent);
 
                   opponent = response[1];
+                  console.log(opponent);
                   player.isWaiting = false;
                   $modalContainer.css('display', 'none');
                   putPlayer(player);
@@ -89,7 +89,8 @@ function putPlayer(playerObj) {
   $.ajax({
     url: apiURL + playerObj._id,
     type: 'PUT',
-    data: playerObj,
+    contentType: 'application/json',
+    data: JSON.stringify(playerObj),
     success: function(response) {
       console.log('UPDATED PLAYER');
     }

@@ -12,6 +12,7 @@ if (!sessionStorage.userName) {
   $modalContainer.css('display', 'block');
   themeMusic.play();
 } else {
+  $modalContainer.css('display', 'block');
   player.userName = sessionStorage.userName;
 }
 
@@ -77,6 +78,7 @@ function postPlayer(playerObj){
       contentType: 'application/json',
       data: JSON.stringify(player),
       success: function(response){
+        player._id = response._id;
         console.log(response);
       }
   });

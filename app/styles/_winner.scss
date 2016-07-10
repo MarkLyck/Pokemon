@@ -12,7 +12,7 @@
       }
     }
     #winner {
-        height: 60vh;
+        height: 50vh;
         position: relative;
         #winnerPlayer {
             height: 100%;
@@ -26,6 +26,10 @@
         }
     }
     footer {
+      text-align: center;
+      #winner-name {
+      margin-top: 1em;
+      }
       .new-game-btn {
         background: none;
         border: 2px solid #fff;

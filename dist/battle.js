@@ -5,6 +5,7 @@ var $pokemonType = $('#pokemonType');
 var $pokemonMoves = $('.moves-list');
 var $mainBox = $('.main-box');
 var $actionText = $('.action');
+
 var playerHealth = 0;
 var playerHealthMax = 0;
 var opponentHealth = 0;
@@ -18,6 +19,7 @@ var MissSound = new Audio('assets/sounds/MissSound.mp3');
 var criticalHitSound = new Audio('assets/sounds/criticalHit.wav');
 
 function battle() {
+  console.log('battle OPPONENT: ', opponent);
     $pokemonMoves.children('li').children('button').attr('disabled', false);
 
     opponnentIsDead = false;

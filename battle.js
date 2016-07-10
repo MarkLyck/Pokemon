@@ -87,7 +87,7 @@ function battle() {
 function actionMove(move, attacker) {
     if (move.moveName === 'tackle') {
         if (didHit(move)) {
-            var takleSound = new Audio('assets/sounds/Tackle.wav');
+            var tackleSound = new Audio('assets/sounds/Tackle.wav');
             console.log('HIT');
             console.log(attacker);
             let damage = 0;
@@ -99,7 +99,7 @@ function actionMove(move, attacker) {
                 criticalHitSound.play();
                 resetMoves();
             } else {
-                takleSound.play();
+                tackleSound.play();
                 damage = move.damage;
                 if (attacker === player) {
                     $actionText.text(attacker.chosen.name + ' used ' + move.moveName + '!');
@@ -151,6 +151,7 @@ function actionMove(move, attacker) {
                 }
             }
         } else {
+            player.didMiss = true;
             console.log('MISSED');
             $actionText.text(attacker.chosen.name + ' missed!');
             missAnimation(attacker);

@@ -10,7 +10,15 @@ var playerHealthMax = 0;
 var opponentHealth = 0;
 var opponentHealthMax = 0;
 
+var opponnentIsDead = false;
+
+var faintSound = new Audio('assets/sounds/faint.wav');
+var victorySound = new Audio('assets/sounds/victory.mp3');
+var MissSound = new Audio('assets/sounds/MissSound.mp3');
+var criticalHitSound = new Audio('assets/sounds/criticalHit.wav');
+
 function battle() {
+    opponnentIsDead = false;
     var opponentPokemon = opponent.chosen.name;
     opponentHealth = opponent.chosen.hitPoints;
     opponentHealthMax = opponentHealth;
@@ -56,14 +64,19 @@ function actionMove(move, attacker) {
     $pokemonMoves.children('li').children('button').attr('disabled', true);
     if (move.moveName === 'tackle') {
         if (didHit(move)) {
+            var takleSound = new Audio('assets/sounds/Tackle.wav');
             console.log('HIT');
             console.log(attacker);
             let damage = 0;
+            tackleAnimation(attacker);
             if (didCritHit(move)) {
                 damage = move.damage * move.critDmgMod;
                 $actionText.text('Critical hit!');
+                criticalHitSound.currentTime=0;
+                criticalHitSound.play();
                 resetMoves();
             } else {
+                takleSound.play();
                 damage = move.damage;
                 if (attacker === player) {
                   $actionText.text(attacker.chosen.name + ' used ' + move.moveName + '!');
@@ -78,17 +91,19 @@ function actionMove(move, attacker) {
                 if (playerHealth <= 0) {
                     console.log('YOU LOSE!');
                     $playerHealthBar.val(0);
-                    renderWinScreen(opponent);
+                    faintSound.play();
+
+                    window.setTimeout(function() {
+                      renderWinScreen(opponent);
+                    }, 2000);
                 } else {
                     $playerHealthBar.val(playerHealth);
                 }
-
                 if (playerHealth <= playerHealthMax / 4) {
                     $playerHealthBar.addClass('low-health');
                 } else if (playerHealth <= playerHealthMax / 2) {
                     $playerHealthBar.addClass('medium-health');
                 }
-
 
             } else {
                 opponentHealth -= damage;
@@ -96,9 +111,15 @@ function actionMove(move, attacker) {
                 if (opponentHealth <= 0) {
                     console.log('YOU WIN!');
                     $opponentHealthBar.val(0);
+
+                    window.setTimeout(function() {
                     renderWinScreen(player);
+                  }, 2000);
+                    opponnentIsDead = true;
+                    victorySound.play();
                 } else {
                     $opponentHealthBar.val(opponentHealth);
+                    // tackleAnimation(attacker);
                 }
 
                 if (opponentHealth <= opponentHealthMax / 5) {
@@ -110,16 +131,19 @@ function actionMove(move, attacker) {
         } else {
             console.log('MISSED');
             $actionText.text(attacker.chosen.name + ' missed!');
+            MissSound.currentTime =0;
+            MissSound.play();
             resetMoves();
+
+
         }
     }
     if (attacker === opponent) {
         $pokemonMoves.children('li').children('button').attr('disabled', false);
-
-    } else {
+    } else if (!opponnentIsDead) {
         window.setTimeout(function() {
             computerMove();
-        }, 1500);
+        }, 500);
     }
 }
 
@@ -132,7 +156,7 @@ function resetMoves() {
         $mainBox.css('display', 'block');
         $pokemonMoves.css('display', 'flex');
         $actionText.css('display', 'none');
-    }, 1500);
+    }, 500);
 }
 
 function didHit(move) {
@@ -151,9 +175,25 @@ function didCritHit(move) {
     }
 }
 
+function tackleAnimation(attacker) {
+  if (attacker === player) {
+    $('.player.pokemon').css('transform', 'translateX(50%)');
+    window.setTimeout(function() {
+        $('.player.pokemon').css('transform', 'translateX(0)');
+    }, 200);
+  } else {
+    $('.opponent.pokemon').css('transform', 'translateX(-50%)');
+    window.setTimeout(function() {
+        $('.opponent.pokemon').css('transform', 'translateX(0)');
+    }, 200);
+  }
+
+
+}
+
+
 function computerMove() {
     var opponentMove = opponent.chosen.moves[Math.floor(Math.random() * opponent.chosen.moves.length)];
     actionMove(opponentMove, opponent);
     console.log(opponentMove);
-
 }

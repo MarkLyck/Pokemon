@@ -35,6 +35,7 @@ function Player (userName, playerNo){
   this.losses = 0;
   this.pkmn = [Pikachu,Charmander,Bulbasaur,Squirtle,Pidgey,Magikarp];
 }
-var userName = 'Ash';
-var player = new Player(userName);
+
+// var userName = 'Ash';
+var player = new Player('Ash');
 var opponent = new Player('Computer', 2);

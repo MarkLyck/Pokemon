@@ -19,4 +19,6 @@ function renderWinScreen(winner) {
 $newGameBtn.on('click', function() {
     $('.screen').css('display', 'none');
     $('.choose').css('display', 'block');
+    victorySound.pause();
+    victorySound.currentTime = 0;
 });

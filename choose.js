@@ -70,16 +70,16 @@ function choosePokemon() {
                   }
                 });
 
-                console.log('Waiting players: ', waitingPlayers);
-                console.log(waitingPlayers.length);
-
                 if (waitingPlayers.length > 0) {
                   clearInterval(searchingForOpponent);
 
-                  console.log('POSSIBLE OPPONENTS: ', waitingPlayers);
                   opponent = waitingPlayers[0];
 
                   opponent.opponent = player._id;
+                  opponent.myTurn = false;
+                  //TODO do we need this?
+                  player.playerNo = 1;
+                  player.myTurn = true;
 
                   console.log('FOUND OPPONENT: ', opponent);
                   player.isWaiting = false;
@@ -90,7 +90,6 @@ function choosePokemon() {
                   battle();
                 }
                 if (player.opponent) {
-                  console.log('HURRAY');
                   clearInterval(searchingForOpponent);
                   $.ajax({
                     url: apiURL + player.opponent,
@@ -98,6 +97,7 @@ function choosePokemon() {
                     success: function(response) {
                       opponent = response;
                       player.isWaiting = false;
+                      player.playerNo = 2;
                       $modalContainer.css('display', 'none');
                       putPlayer(player);
                       battle();
@@ -119,8 +119,5 @@ function putPlayer(playerObj) {
     type: 'PUT',
     contentType: 'application/json',
     data: JSON.stringify(playerObj),
-    success: function(response) {
-      // console.log('UPDATED PLAYER');
-    }
   });
 }

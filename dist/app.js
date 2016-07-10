@@ -20,12 +20,12 @@ function Pokemon (name, type, imgSrc, hitPoints, moves) {
   this.maxHitPoints = hitPoints || 30;
   this.moves = moves || [tackle];
 }
-var Pikachu = new Pokemon('Pikachu', 'electric', 'assets/images/pokemon_characters/pokemon_pikachu.png');
-var Charmander = new Pokemon('Charmander', 'fire', 'assets/images/pokemon_characters/pokemon_charmander.png');
-var Bulbasaur = new Pokemon('Bulbasaur', 'grass', 'assets/images/pokemon_characters/pokemon_bulbasar.png');
-var Squirtle = new Pokemon('Squirtle', 'water', 'assets/images/pokemon_characters/pokemon_squirtle.png');
-var Pidgey = new Pokemon('Pidgey', 'flying', 'assets/images/pokemon_characters/pokemon_pidgey.png');
-var Magikarp = new Pokemon('Magikarp', 'water', 'assets/images/pokemon_characters/pokemon_magikarp.png');
+var Pikachu = new Pokemon('Pikachu', 'electric', 'assets/images/pokemon_characters/Pikachu');
+var Charmander = new Pokemon('Charmander', 'fire', 'assets/images/pokemon_characters/Charmander');
+var Bulbasaur = new Pokemon('Bulbasaur', 'grass', 'assets/images/pokemon_characters/Bulbasaur');
+var Squirtle = new Pokemon('Squirtle', 'water', 'assets/images/pokemon_characters/Squirtle');
+var Pidgey = new Pokemon('Pidgey', 'flying', 'assets/images/pokemon_characters/Pidgey');
+var Magikarp = new Pokemon('Magikarp', 'water', 'assets/images/pokemon_characters/Magikarp');
 
 function Player (userName, playerNo){
   this.userName = userName;

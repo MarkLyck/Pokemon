@@ -1,9 +1,15 @@
 $text-color: #00476D;
-$btnText: #00476D;
+
+$btnText: #fff;
+$btnColor: #0ba0d7;
+$btnHover: purple;
+
 $font: Avenier;
 $banner-text: #128A88;
-$header-background: #0E486C;
-$primary-background: #AAd5A7;
+$header-background: #0ba0d7;
+$primary-background: #0ba0d7;
 $border-color: #E6A239;
-$btnColor: #398887;
-$btnHover: purple;
+
+$hover: darken(#0ba0d7,5%);
+$unselected: #0ba0d7;
+$selected: darken(#0ba0d7,10%);

@@ -1,8 +1,20 @@
 .battleScreen {
     display: none;
     flex-direction: column;
+    align-items: center;
     footer {
+        height: 25vh;
+        width: 100vw;
         display: flex;
+        justify-content: space-between;
+        background: $primary-background;
+    }
+    main {
+        width: 75vw;
+        height: 75vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
         justify-content: space-between;
     }
 }
@@ -10,4 +22,93 @@
     .action {
         display: none;
     }
+}
+#opponent {
+    height: calc(50% - 5vh);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10vh;
+}
+#player {
+  height: calc(50% - 5vh);
+    display: flex;
+    justify-content: space-between;
+
+    .wrapper {
+      align-self: flex-end;
+    }
+}
+.pokemon {
+    max-height: 32.5vh;
+    min-width: 32.5vh;
+}
+.player-info {
+    border: 4px solid black;
+    max-height: 2.5em;
+    padding: 1em;
+    div {
+        display: flex;
+        align-items: center;
+    }
+    .wrapper {
+        justify-content: space-between;
+    }
+}
+.exp {
+  display: flex;
+  justify-content: flex-end;
+}
+.HP {
+  background: #405C4B;
+  color: #FFB03D;
+  padding: 2px;
+  border-radius: 10px;
+  .healthBar {
+    border: 2px solid #FFF;
+    margin-right: 3px;
+    border-radius: 10px;
+  }
+  .healthBar::-webkit-progress-bar {
+    background-color: #3B404A;
+    border-radius: 10px;
+  }
+  .healthBar::-webkit-progress-value {
+    background-color: #18cf7c;
+    border-radius: 10px;
+  }
+  .healthBar[value] {
+    background-color: #18cf7c;
+    border-radius: 10px;
+  }
+  p {
+    padding: 0 5px;
+  }
+}
+
+.info-box {
+  background: red;
+  width: 25%;
+  padding: 3em;
+  box-sizing: border-box;
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.main-box {
+  width: 75%;
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    li {
+      width: 50%;
+      height: 50%;
+      display: flex;
+      align-items: center;
+      padding-left: 10%;
+      box-sizing: border-box;
+    }
+  }
 }

@@ -1,0 +1,45 @@
+.winScreen {
+    height: 100vh;
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    background: $primary-background;
+    header{
+      h3 {
+        color: #fff;
+        font-size: 95px;
+        font-weight: 100;
+      }
+    }
+    #winner {
+        height: 60vh;
+        position: relative;
+        #winnerPlayer {
+            height: 100%;
+        }
+        #winnerPokemon {
+            height: 35%;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+
+        }
+    }
+    footer {
+      .new-game-btn {
+        background: none;
+        border: 2px solid #fff;
+        padding: 25px 50px;
+        border-radius: 20px;
+        color: #fff;
+        margin-top: 30px;
+        &:hover {
+          background: #fff;
+          color: $primary-background;
+        }
+        &:active {
+          background: #fff;
+        }
+      }
+    }
+}

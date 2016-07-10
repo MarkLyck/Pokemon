@@ -4,48 +4,112 @@
     text-align: center;
     background: $primary-background;
 }
-h1 {
-    margin: 0;
-    background: $header-background;
-    color: #FFF;
-    font-size: 6em;
-    padding: 0.3em 0;
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
+header {
+  height: 20vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $header-background;
+  h1 {
+      margin: 0;
+      color: #FFF;
+      font-size: 6em;
+      font-weight: 100;
+      // padding: 0.3em 0;
+  }
+}
+
+main {
+  height: 80vh;
+}
+
+
+
 .gender-wrapper {
     display: inline-flex;
     width: 70vw;
-    margin: 3em 0;
+    // margin: 10% 0;
+    height: 80%;
 }
 .gender {
-    height: 25em;
-    // width: 100px;
+    height: 100%;
+    flex: 25%;
     background: #388887;
     margin: 3em;
+    border: 10px solid $unselected;
+    border-radius: 5px;
+    background-color: $unselected;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    &:hover {
+      background-color: $hover;
+      border-color: $hover;
+    }
 }
 
 
-#male {
-  
-  // width: 100px;
+.male {
+  background-image: url("assets/images/characters/Ash.png");
+}
 
-    flex: 25%;
+.female {
+    background-image: url("assets/images/characters/Misty.png");
 }
-#female {
-    flex: 25%;
+
+.selected {
+  background-color: $selected;
+  border-color: $selected;
+  &:hover {
+    background-color: $selected;
+    border-color: $selected;
+  }
 }
+
 #next-btn {
     color: $btnText;
-    background: $btnColor;
+    background: transparent;
+    border: 3px solid #fff;
     border-radius: 0.5em;
     border: solid 0.1em;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    // box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     position: relative;
     bottom: 6vw;
     left: 40vw;
     width: 7vw;
     height: 3vw;
     &:hover {
-        transition: 0.5s;
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+      background: $hover;
+        // transition: 0.5s;
+        // box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     }
+}
+
+#pokemonList {
+  display: flex;
+  flex-wrap: wrap;
+  height: 0;
+  li {
+    width: calc(100%/3 - 2rem);
+    height: calc(80vh/2 - 2rem);
+    margin: 1rem;
+    box-sizing: border-box;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 10px solid $unselected;
+    border-radius: 5px;
+    &:hover {
+      background-color: $hover;
+      border-color: $hover;
+    }
+  }
 }

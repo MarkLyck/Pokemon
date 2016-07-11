@@ -30,16 +30,22 @@ body {
           width: 70%;
           padding: 10px 0;
           margin-top: 1em;
+          color: $text-color;
+          border: none;
+          background: #ECECEC;
+          &:hover {
+              background: darken(#ECECEC,10%);
+          }
         }
         #multiplayer-btn {
             width: 70%;
             padding: 10px 0;
             margin-top: 4em;
+            color: $text-color;
+            border: none;
+            background: #ECECEC;
             &:hover {
-                transition: 0.2s;
-                //  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-                background-color: #fff;
-                color: $primary-background;
+                background: darken(#ECECEC,10%);
             }
         }
     }

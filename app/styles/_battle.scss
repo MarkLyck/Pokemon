@@ -165,6 +165,9 @@
           transform: translateY(-50%);
         }
       }
+      button[disabled]{
+        color: darkgrey;
+      }
     }
   }
 }

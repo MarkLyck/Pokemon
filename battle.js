@@ -186,10 +186,12 @@ function actionMove(move, attacker) {
                     success: function(response) {
                         if (response.myTurn) {
                           console.log(response);
+                          clearInterval(waitingForOppMove);
+                          player = response;
                             // getOpponent();
                             // player = response;
                             // console.log(player.opponentMove);
-                            // battleMultiplayerOpponentMove(player.opponentMove, opponent);
+                            battleMultiplayerOpponentMove(player.opponentMove, opponent);
                         }
                     }
                 });

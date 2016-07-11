@@ -1,6 +1,9 @@
 @font-face {
   font-family: pokemonFont;
   src: url("assets/fonts/PokemonFont.ttf"); }
+@font-face {
+  font-family: pokemonTitleFont;
+  src: url("assets/fonts/PokemonSolid.ttf"); }
 body, p, h3 {
   font-family: pokemonFont;
   margin: 0;
@@ -39,7 +42,7 @@ body {
     transform: translateY(-50%); }
     .modal-container .login-modal h2 {
       font-size: 3.5em;
-      font-family: Pokemon Solid;
+      font-family: pokemonTitleFont;
       padding: 1em 0; }
     .modal-container .login-modal #login-input {
       padding: 15px;

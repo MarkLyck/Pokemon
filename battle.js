@@ -52,7 +52,9 @@ function battle() {
     player.chosen.moves.forEach(function(move) {
         var $move = $('<li><button>' + move.moveName + '</button></li>')
         $pokemonMoves.append($move);
-        $move.on('click', actionMove.bind(null, move, player));
+        $move.on('click', function() {
+          actionMove(move, player);
+        });
     });
     while ($pokemonMoves.children().length < 4) {
         var $missingMove = $('<li>—</li>')

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Pokemon</title>
 
@@ -8,112 +9,114 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" media="screen" title="no title" charset="utf-8">
 
     <!-- Font Awesome -->
-    <!-- <link rel="stylesheet" href="font-awesome.min.css" media="screen"> -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css" media="screen">
     <!-- main CSS -->
     <link rel="stylesheet" href="main.css" media="screen">
-  </head>
-  <body>
+</head>
+
+<body>
 
     <div class="choose screen">
-      <header>
-        <h1 id="chooseTitle">Choose Player</h1>
-      </header>
-      <main>
-        <div class="gender-wrapper">
-          <div class="gender box male" id="male"></div>
-          <div class="gender box female"  id="female"></div>
+        <header>
+            <h1 id="chooseTitle">Choose Player</h1>
+        </header>
+        <main>
+            <div class="gender-wrapper">
+                <div class="gender box male" id="male"></div>
+                <div class="gender box female" id="female"></div>
 
 
-        </div>
-        <ul id="pokemonList"></ul>
-        <!-- <button id="next-btn" type="button" name="button">Next</button> -->
-      </main>
+            </div>
+            <ul id="pokemonList"></ul>
+            <!-- <button id="next-btn" type="button" name="button">Next</button> -->
+        </main>
     </div>
 
     <div class="battleScreen screen">
-      <main>
-        <h3 id="opponent-name">INSERT NAME</h3>
-        <section class="opponent" id="opponent">
-          <div class="opponent player-info">
-            <div class="wrapper">
-              <h3 class="pokemonName opponent">Pokemon</h3>
-              <h3 class="pokemonLevel opponent">Lv0</h3>
+        <main>
+            <h3 id="opponent-name">INSERT NAME</h3>
+            <section class="opponent" id="opponent">
+                <div class="opponent player-info">
+                    <div class="wrapper">
+                        <h3 class="pokemonName opponent">Pokemon</h3>
+                        <h3 class="pokemonLevel opponent">Lv0</h3>
+                    </div>
+                    <div class="HP">
+                        <p class="HP-text">HP</p>
+                        <progress class="healthBar opponent" value="10" max="100"></progress>
+                    </div>
+                </div>
+                <img class="opponent pokemon" />
+            </section>
+            <section class="player" id="player">
+                <img class="player pokemon" />
+                <div class="wrapper">
+                    <div class="player player-info">
+                        <div class="wrapper">
+                            <h3 class="pokemonName player">Pokemon</h3>
+                            <h3 class="pokemonLevel player">Lv0</h3>
+                        </div>
+                        <div class="HP">
+                            <p class="HP-text">HP</p>
+                            <progress class="healthBar player" value="10" max="100"></progress>
+                        </div>
+                    </div>
+                    <div class="exp">
+                        <p>EXP</p>
+                        <progress id="expBar" value="10" max="100"></progress>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="main-box">
+                <h3 class="action">action happened!</h3>
+                <ul class="moves-list"></ul>
             </div>
-            <div class="HP">
-              <p class="HP-text">HP</p>
-              <progress class="healthBar opponent" value="10" max="100"></progress>
+            <div class="info-box">
+                <div class="wrapper">
+                    <h3>PP</h3>
+                    <h3 class="PP">35/35</h3>
+                </div>
+                <h3>type/<span id="pokemonType">FLYING</span></h3>
             </div>
-          </div>
-          <img class="opponent pokemon" />
-        </section>
-        <section class="player" id="player">
-          <img class="player pokemon" />
-          <div class="wrapper">
-            <div class="player player-info">
-              <div class="wrapper">
-                <h3 class="pokemonName player">Pokemon</h3>
-                <h3 class="pokemonLevel player">Lv0</h3>
-              </div>
-              <div class="HP">
-                <p class="HP-text">HP</p>
-                <progress class="healthBar player" value="10" max="100"></progress>
-              </div>
-            </div>
-            <div class="exp">
-              <p>EXP</p>
-              <progress id="expBar" value="10" max="100"></progress>
-            </div>
-          </div>
-        </section>
-      </main>
-      <footer>
-        <div class="main-box">
-          <h3 class="action">action happened!</h3>
-          <ul class="moves-list"></ul>
-        </div>
-        <div class="info-box">
-          <div class="wrapper">
-            <h3>PP</h3>
-            <h3 class="PP">35/35</h3>
-          </div>
-          <h3>type/<span id="pokemonType">FLYING</span></h3>
-        </div>
-      </footer>
+        </footer>
     </div>
 
 
     <div class="winScreen screen">
-      <header>
-        <h1>Winner</h1>
-      </header>
-      <main id="winner">
-        <img id="winnerPokemon" src="#" alt="" />
-        <img id="winnerPlayer" src="#" alt="" />
-      </main>
-      <footer>
-        <h3 id="winner-name"></h3>
-        <button class="new-game-btn" type="button" name="button">New Game</button>
-      </footer>
+        <header>
+            <h1>Winner</h1>
+        </header>
+        <main id="winner">
+            <img id="winnerPokemon" src="#" alt="" />
+            <img id="winnerPlayer" src="#" alt="" />
+        </main>
+        <footer>
+            <h3 id="winner-name"></h3>
+            <button class="new-game-btn" type="button" name="button">New Game</button>
+        </footer>
     </div>
 
 
 
 
     <div class="modal-container">
-      <div class="login-modal modal">
-        <h2>Poké Battle</h2>
-        <input id="login-input" type="text" name="name" value="" placeholder="Username">
-        <button id="multiplayer-btn" type="button" name="button">Multi-Player</button>
-        <button id="singleplayer-btn" type="button" name="button">Single-Player</button>
-      </div>
-      <div class="waiting-modal modal">
-        <h2>Waiting for opponent...</h2>
-      </div>
+        <div class="login-modal modal">
+            <h2>Poké Battle</h2>
+            <input id="login-input" type="text" name="name" value="" placeholder="Username">
+            <button id="multiplayer-btn" type="button" name="button">Multi-Player</button>
+            <button id="singleplayer-btn" type="button" name="button">Single-Player</button>
+        </div>
+        <div class="waiting-modal modal">
+            <p><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                <span class="sr-only">Loading...</span></p>
+            <h2>Waiting for opponent...</h2>
+        </div>
     </div>
 
     <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw=" crossorigin="anonymous"></script>
     <script src="app.js" type="text/javascript"></script>
     <script src="login.js" type="text/javascript"></script>
@@ -121,5 +124,6 @@
     <script src="battleMultiplayer.js" type="text/javascript"></script>
     <script src="battle.js" type="text/javascript"></script>
     <script src="winner.js" type="text/javascript"></script>
-  </body>
+</body>
+
 </html>

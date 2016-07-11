@@ -118,6 +118,12 @@ function actionMove(move, attacker) {
                     $playerHealthBar.val(0);
                     faintSound.play();
                     $pokemonMoves.children('li').children('button').attr('disabled', true);
+
+                    player.myTurn = false;
+                    opponent.myTurn = true;
+                    opponent.opponentMove = move;
+                    putPlayer(opponent);
+
                     window.setTimeout(function() {
                         renderWinScreen(opponent);
                     }, 2500);
@@ -135,6 +141,11 @@ function actionMove(move, attacker) {
                 if (opponent.chosen.hitPoints <= 0) {
                     console.log('YOU WIN!');
                     $opponentHealthBar.val(0);
+
+                    player.myTurn = false;
+                    opponent.myTurn = true;
+                    opponent.opponentMove = move;
+                    putPlayer(opponent);
 
                     window.setTimeout(function() {
                         renderWinScreen(player);
@@ -170,7 +181,6 @@ function actionMove(move, attacker) {
         player.myTurn = false;
         opponent.myTurn = true;
         opponent.opponentMove = move;
-        console.log('P BEFORE: ', player);
         putPlayer(opponent);
         $.ajax({
           url: apiURL + player._id,
@@ -188,10 +198,17 @@ function actionMove(move, attacker) {
                           console.log(response);
                           clearInterval(waitingForOppMove);
                           player = response;
-                            // getOpponent();
-                            // player = response;
-                            // console.log(player.opponentMove);
-                            battleMultiplayerOpponentMove(player.opponentMove, opponent);
+                          battleMultiplayerOpponentMove(player.opponentMove, opponent);
+                          if (player.chosen.hitPoints <= 0) {
+                            window.setTimeout(function() {
+                                renderWinScreen(opponent);
+                            }, 2500);
+                          }
+                          if (player.chosen.hitPoints <= playerHealthMax / 4) {
+                              $playerHealthBar.addClass('low-health');
+                          } else if (player.chosen.hitPoints <= playerHealthMax / 2) {
+                              $playerHealthBar.addClass('medium-health');
+                          }
                         }
                     }
                 });

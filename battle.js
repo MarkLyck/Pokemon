@@ -123,7 +123,8 @@ function actionMove(move, attacker) {
                     opponent.myTurn = true;
                     opponent.opponentMove = move;
                     putPlayer(opponent);
-
+                    faintSound.currentTime =0;
+                    faintSound.play();
                     window.setTimeout(function() {
                         renderWinScreen(opponent);
                     }, 2500);

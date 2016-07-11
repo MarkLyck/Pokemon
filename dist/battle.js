@@ -213,8 +213,6 @@ function actionMove(move, attacker) {
         });
 
         console.log('P AFTER: ', player);
-
-
     }
 }
 

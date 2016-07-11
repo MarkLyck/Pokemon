@@ -89,7 +89,7 @@ function actionMove(move, attacker) {
         if (didHit(move)) {
             var tackleSound = new Audio('assets/sounds/Tackle.wav');
             console.log('HIT');
-            console.log(attacker);
+            console.log(attacker, ' : attacker');
             let damage = 0;
             tackleAnimation(attacker);
             if (didCritHit(move)) {

@@ -6,10 +6,6 @@ var $pokemonMoves = $('.moves-list');
 var $mainBox = $('.main-box');
 var $actionText = $('.action');
 
-
-var playerHealthMax = 0;
-var opponentHealthMax = 0;
-
 var opponentIsDead = false;
 
 var faintSound = new Audio('assets/sounds/faint.wav');
@@ -18,25 +14,23 @@ var MissSound = new Audio('assets/sounds/MissSound.mp3');
 var criticalHitSound = new Audio('assets/sounds/criticalHit.wav');
 
 function battle() {
+    player.chosen.hitPoints = player.chosen.maxHitPoints;
     $pokemonMoves.children('li').children('button').attr('disabled', false);
-
     opponentIsDead = false;
     var opponentPokemon = opponent.chosen.name;
-    opponentHealthMax = opponent.chosen.hitPoints;
     var opponentLevel = opponent.chosen.level;
 
     var playerPokemon = player.chosen.name;
-    playerHealthMax = player.chosen.hitPoints;
     var playerLevel = player.chosen.level;
 
     $('#opponent-name').text(opponent.userName);
     $('.pokemonName.opponent').text(opponentPokemon);
-    $opponentHealthBar.attr('max', opponent.chosen.hitPoints);
+    $opponentHealthBar.attr('max', opponent.chosen.maxHitPoints);
     $opponentHealthBar.val(opponent.chosen.hitPoints);
     $('.pokemonLevel.opponent').text('Lv' + opponentLevel);
 
     $('.pokemonName.player').text(playerPokemon);
-    $playerHealthBar.attr('max', player.chosen.hitPoints);
+    $playerHealthBar.attr('max', player.chosen.maxHitPoints);
     $playerHealthBar.val(player.chosen.hitPoints);
     $('.pokemonLevel.player').text('Lv' + playerLevel);
     $playerExBar.attr('max', player.chosen.exPMax);
@@ -50,14 +44,14 @@ function battle() {
 
     $pokemonMoves.empty();
     player.chosen.moves.forEach(function(move) {
-        var $move = $('<li><button>' + move.moveName + '</button></li>')
+        var $move = $('<li><button>' + move.moveName + '</button></li>');
         $pokemonMoves.append($move);
         $move.on('click', function() {
           actionMove(move, player);
         });
     });
     while ($pokemonMoves.children().length < 4) {
-        var $missingMove = $('<li>—</li>')
+        var $missingMove = $('<li>—</li>');
         $pokemonMoves.append($missingMove);
     }
     if (player.playerNo === 1) {
@@ -90,7 +84,7 @@ function actionMove(move, attacker) {
             var tackleSound = new Audio('assets/sounds/Tackle.wav');
             console.log('HIT');
             console.log(attacker, ' : attacker');
-            let damage = 0;
+            var damage = 0;
             tackleAnimation(attacker);
             if (didCritHit(move)) {
                 // player.didCrit = true;
@@ -131,9 +125,9 @@ function actionMove(move, attacker) {
                 } else {
                     $playerHealthBar.val(player.chosen.hitPoints);
                 }
-                if (player.chosen.hitPoints <= playerHealthMax / 4) {
+                if (player.chosen.hitPoints <= player.chosen.maxHitPoints / 4) {
                     $playerHealthBar.addClass('low-health');
-                } else if (player.chosen.hitPoints <= playerHealthMax / 2) {
+                } else if (player.chosen.hitPoints <= player.chosen.maxHitPoints / 2) {
                     $playerHealthBar.addClass('medium-health');
                 }
 
@@ -158,9 +152,9 @@ function actionMove(move, attacker) {
                     // tackleAnimation(attacker);
                 }
 
-                if (opponent.chosen.hitPoints <= opponentHealthMax / 5) {
+                if (opponent.chosen.hitPoints <= opponent.chosen.maxHitPoints / 5) {
                     $opponentHealthBar.addClass('low-health');
-                } else if (player.chosen.hitPoints <= playerHealthMax / 2) {
+                } else if (opponent.chosen.hitPoints <= opponent.chosen.maxHitPoints / 2) {
                     $opponentHealthBar.addClass('medium-health');
                 }
             }
@@ -205,9 +199,9 @@ function actionMove(move, attacker) {
                                 renderWinScreen(opponent);
                             }, 2500);
                           }
-                          if (player.chosen.hitPoints <= playerHealthMax / 4) {
+                          if (player.chosen.hitPoints <= player.chosen.maxHitPoints / 4) {
                               $playerHealthBar.addClass('low-health');
-                          } else if (player.chosen.hitPoints <= playerHealthMax / 2) {
+                          } else if (player.chosen.hitPoints <= player.chosen.maxHitPoints / 2) {
                               $playerHealthBar.addClass('medium-health');
                           }
                         }

@@ -297,7 +297,20 @@ main {
         background: none;
         border: none;
         font-size: 3vw;
-        color: #FFF; }
+        color: #FFF;
+        position: relative; }
+        .main-box ul li button:hover {
+          color: #00476D;
+          font-size: 3.3vw; }
+        .main-box ul li button:hover::after {
+          content: '';
+          border-top: 20px solid transparent;
+          border-bottom: 20px solid transparent;
+          border-left: 20px solid #00476D;
+          position: absolute;
+          left: -20px;
+          top: 40%;
+          transform: translateY(-50%); }
 
 #expBar {
   border: 2px solid #FFF;

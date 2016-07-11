@@ -73,12 +73,7 @@ function battle() {
                       clearInterval(waitingFirstOppMove);
                       player = response;
                       battleMultiplayerOpponentMove(player.opponentMove, opponent);
-                      // $pokemonMoves.children('li').children('button').attr('disabled', false);
-                      console.log(response);
-                        // getOpponent();
-                        // player = response;
-                        // console.log(player.opponentMove);
-                        // battleMultiplayerOpponentMove(player.opponentMove, opponent);
+                      console.log('player2 first turn', player);
                     }
                 }
             });
@@ -87,6 +82,9 @@ function battle() {
 }
 
 function actionMove(move, attacker) {
+  opponent.didMiss = false;
+  opponent.didCrit = false;
+
     if (move.moveName === 'tackle') {
         if (didHit(move)) {
             var tackleSound = new Audio('assets/sounds/Tackle.wav');
@@ -95,6 +93,8 @@ function actionMove(move, attacker) {
             let damage = 0;
             tackleAnimation(attacker);
             if (didCritHit(move)) {
+                // player.didCrit = true;
+                opponent.didCrit = true;
                 damage = move.damage * move.critDmgMod;
                 $actionText.text('Critical hit!');
                 criticalHitSound.currentTime = 0;
@@ -153,7 +153,7 @@ function actionMove(move, attacker) {
                 }
             }
         } else {
-            player.didMiss = true;
+            opponent.didMiss = true;
             console.log('MISSED');
             $actionText.text(attacker.chosen.name + ' missed!');
             missAnimation(attacker);

@@ -2,6 +2,16 @@ function battleMultiplayerOpponentMove(move, attacker) {
   console.log('battleMultiplayerOpponentMove FUNCTION');
     if (move.moveName === 'tackle') {
         if (!attacker.didMiss) {
+          if (attacker.didCrit){
+            $actionText.text('Enemy ' + attacker.chosen.name + ' dealt a critical hit!');
+            resetMoves();
+
+            var critHitSound = new Audio('assets/sounds/criticalHit.wav');
+            critHitSound.currentTime = 0;
+            critHitSound.play();
+            tackleAnimation(attacker);
+            $playerHealthBar.val(player.chosen.hitPoints);
+          } else {
             $actionText.text('Enemy ' + attacker.chosen.name + ' used ' + move.moveName);
             resetMoves();
 
@@ -10,7 +20,7 @@ function battleMultiplayerOpponentMove(move, attacker) {
             tackleSound.play();
             tackleAnimation(attacker);
             $playerHealthBar.val(player.chosen.hitPoints);
-
+          }
         } else {
           $actionText.text(attacker.chosen.name + ' missed!');
           resetMoves();

@@ -52,7 +52,9 @@ function battle() {
     player.chosen.moves.forEach(function(move) {
         var $move = $('<li><button>' + move.moveName + '</button></li>')
         $pokemonMoves.append($move);
-        $move.on('click', actionMove.bind(null, move, player));
+        $move.on('click', function() {
+          actionMove(move, player);
+        });
     });
     while ($pokemonMoves.children().length < 4) {
         var $missingMove = $('<li>—</li>')
@@ -71,12 +73,7 @@ function battle() {
                       clearInterval(waitingFirstOppMove);
                       player = response;
                       battleMultiplayerOpponentMove(player.opponentMove, opponent);
-                      // $pokemonMoves.children('li').children('button').attr('disabled', false);
-                      console.log(response);
-                        // getOpponent();
-                        // player = response;
-                        // console.log(player.opponentMove);
-                        // battleMultiplayerOpponentMove(player.opponentMove, opponent);
+                      console.log('player2 first turn', player);
                     }
                 }
             });
@@ -85,14 +82,19 @@ function battle() {
 }
 
 function actionMove(move, attacker) {
+  opponent.didMiss = false;
+  opponent.didCrit = false;
+
     if (move.moveName === 'tackle') {
         if (didHit(move)) {
             var tackleSound = new Audio('assets/sounds/Tackle.wav');
             console.log('HIT');
-            console.log(attacker);
+            console.log(attacker, ' : attacker');
             let damage = 0;
             tackleAnimation(attacker);
             if (didCritHit(move)) {
+                // player.didCrit = true;
+                opponent.didCrit = true;
                 damage = move.damage * move.critDmgMod;
                 $actionText.text('Critical hit!');
                 criticalHitSound.currentTime = 0;
@@ -116,6 +118,13 @@ function actionMove(move, attacker) {
                     $playerHealthBar.val(0);
                     faintSound.play();
                     $pokemonMoves.children('li').children('button').attr('disabled', true);
+
+                    player.myTurn = false;
+                    opponent.myTurn = true;
+                    opponent.opponentMove = move;
+                    putPlayer(opponent);
+                    faintSound.currentTime =0;
+                    faintSound.play();
                     window.setTimeout(function() {
                         renderWinScreen(opponent);
                     }, 2500);
@@ -134,6 +143,11 @@ function actionMove(move, attacker) {
                     console.log('YOU WIN!');
                     $opponentHealthBar.val(0);
 
+                    player.myTurn = false;
+                    opponent.myTurn = true;
+                    opponent.opponentMove = move;
+                    putPlayer(opponent);
+
                     window.setTimeout(function() {
                         renderWinScreen(player);
                     }, 2500);
@@ -151,7 +165,7 @@ function actionMove(move, attacker) {
                 }
             }
         } else {
-            player.didMiss = true;
+            opponent.didMiss = true;
             console.log('MISSED');
             $actionText.text(attacker.chosen.name + ' missed!');
             missAnimation(attacker);
@@ -168,7 +182,6 @@ function actionMove(move, attacker) {
         player.myTurn = false;
         opponent.myTurn = true;
         opponent.opponentMove = move;
-        console.log('P BEFORE: ', player);
         putPlayer(opponent);
         $.ajax({
           url: apiURL + player._id,
@@ -184,10 +197,19 @@ function actionMove(move, attacker) {
                     success: function(response) {
                         if (response.myTurn) {
                           console.log(response);
-                            // getOpponent();
-                            // player = response;
-                            // console.log(player.opponentMove);
-                            // battleMultiplayerOpponentMove(player.opponentMove, opponent);
+                          clearInterval(waitingForOppMove);
+                          player = response;
+                          battleMultiplayerOpponentMove(player.opponentMove, opponent);
+                          if (player.chosen.hitPoints <= 0) {
+                            window.setTimeout(function() {
+                                renderWinScreen(opponent);
+                            }, 2500);
+                          }
+                          if (player.chosen.hitPoints <= playerHealthMax / 4) {
+                              $playerHealthBar.addClass('low-health');
+                          } else if (player.chosen.hitPoints <= playerHealthMax / 2) {
+                              $playerHealthBar.addClass('medium-health');
+                          }
                         }
                     }
                 });

@@ -5,7 +5,7 @@ function Move(moveName, type, damage, powerPoints, accuracy, critDmgMod, critCha
   this.powerPoints = powerPoints || 15;
   this.accuracy = accuracy || 0.9;
   this.critDmgMod = critDmgMod || 1.5;
-  this.critChance = critChance || 0.05;
+  this.critChance = critChance || 0.95;
 }
 var tackle = new Move();
 

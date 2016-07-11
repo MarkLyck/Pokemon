@@ -15,6 +15,7 @@ var criticalHitSound = new Audio('assets/sounds/criticalHit.wav');
 
 function battle() {
     player.chosen.hitPoints = player.chosen.maxHitPoints;
+    opponent.chosen.hitPoints = player.chosen.maxHitPoints;
     $pokemonMoves.children('li').children('button').attr('disabled', false);
     opponentIsDead = false;
     var opponentPokemon = opponent.chosen.name;
@@ -71,7 +72,7 @@ function battle() {
                     }
                 }
             });
-        }, 500);
+        }, 1500);
     }
 }
 
@@ -171,7 +172,7 @@ function actionMove(move, attacker) {
     if (attacker === player && !opponentIsDead && gameMode === 'singlePlayer') {
         window.setTimeout(function() {
             computerMove();
-        }, 500);
+        }, 1500);
     } else if (attacker === player && !opponentIsDead && gameMode === 'multiPlayer') {
         player.myTurn = false;
         opponent.myTurn = true;
@@ -238,7 +239,7 @@ function resetMoves() {
             $mainBox.css('display', 'block');
             $pokemonMoves.css('display', 'flex');
             $actionText.css('display', 'none');
-        }, 500);
+        }, 1500);
     }
 }
 
